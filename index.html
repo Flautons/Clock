@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Digital clock pro</title>
-</head>
-<body id="body">
-  <form id="all">
-    <div id="test">
-      loading
-    </div>
-    <div id="ttt"></div>
-  </form>
-</body>
+  <head>
+    <title>Clock Example</title>
+    <script>
+      function updateTime() {
+        var today = new Date();
+        var hours = today.getHours().toString().padStart(2, '0');
+        var minutes = today.getMinutes().toString().padStart(2, '0');
+        var seconds = today.getSeconds().toString().padStart(2, '0');
+        var time = hours + ":" + minutes + ":" + seconds;
+        document.getElementById("clock").textContent = time;
+      }
+      setInterval(updateTime, 1000);
+    </script>
+  </head>
+  <body>
+    <h1>Current Time:</h1>
+    <div id="clock"></div>
+  </body>
 </html>
