@@ -20,3 +20,96 @@
     <div id="clock"></div>
   </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jam Analog Sederhana</title>
+	<style>
+		body {
+			background-color: #1a1a1a;
+			color: white;
+			font-family: Arial, sans-serif;
+		}
+
+		.clock {
+			width: 200px;
+			height: 200px;
+			margin: 20px auto;
+			border-radius: 50%;
+			background-color: white;
+			position: relative;
+		}
+
+		.clock::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: #1a1a1a;
+		}
+
+		.hand {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform-origin: bottom;
+			background-color: white;
+			border-radius: 5px;
+		}
+
+		.hour {
+			width: 5px;
+			height: 50px;
+			margin-left: -2.5px;
+		}
+
+		.minute {
+			width: 3px;
+			height: 70px;
+			margin-left: -1.5px;
+		}
+
+		.second {
+			width: 2px;
+			height: 80px;
+			margin-left: -1px;
+			background-color: #ff4d4d;
+		}
+	</style>
+</head>
+<body>
+	<div class="clock">
+		<div class="hand hour"></div>
+		<div class="hand minute"></div>
+		<div class="hand second"></div>
+	</div>
+
+	<script>
+		function updateClock() {
+			let currentTime = new Date();
+			let currentHours = currentTime.getHours();
+			let currentMinutes = currentTime.getMinutes();
+			let currentSeconds = currentTime.getSeconds();
+
+			let hourHand = document.querySelector('.hour');
+			let minuteHand = document.querySelector('.minute');
+			let secondHand = document.querySelector('.second');
+
+			let hourAngle = (360 / 12) * (currentHours % 12) + (30 / 60) * currentMinutes;
+			let minuteAngle = (360 / 60) * currentMinutes + (6 / 60) * currentSeconds;
+			let secondAngle = (360 / 60) * currentSeconds;
+
+			hourHand.style.transform = 'rotate(' + hourAngle + 'deg)';
+			minuteHand.style.transform = 'rotate(' + minuteAngle + 'deg)';
+			secondHand.style.transform = 'rotate(' + secondAngle + 'deg)';
+		}
+
+		updateClock();
+		setInterval(updateClock, 1000);
+	</script>
+</body>
+</html>
